@@ -26,8 +26,3 @@ logging.basicConfig(
     format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
 )
-
-# Test log
-logging.info("Logging has been successfully configured.")
-
-print(f"Log file created at: {LOG_FILE_PATH}")
