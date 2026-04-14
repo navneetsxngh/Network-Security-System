@@ -1,2 +1,7 @@
 [ 2026-04-13 20:18:39,635 ] 31 root - INFO - Logging has been successfully configured.
 [ 2026-04-13 20:18:39,635 ] 19 root - INFO - Entered the try block
+[ 2026-04-14 08:03:12,098 ] 31 root - INFO - Logging has been successfully configured.
+[ 2026-04-14 08:12:00,336 ] 31 root - INFO - Logging has been successfully configured.
+[ 2026-04-14 08:12:00,495 ] 32 root - INFO - Data is Successfully converted to JSON
+[ 2026-04-14 08:13:40,373 ] 32 root - INFO - Data is Successfully converted to JSON
+[ 2026-04-14 08:13:50,298 ] 48 root - INFO - The Data is Successfully inserted to MongoDB
