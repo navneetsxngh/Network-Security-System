@@ -5,3 +5,23 @@
 [ 2026-04-14 08:12:00,495 ] 32 root - INFO - Data is Successfully converted to JSON
 [ 2026-04-14 08:13:40,373 ] 32 root - INFO - Data is Successfully converted to JSON
 [ 2026-04-14 08:13:50,298 ] 48 root - INFO - The Data is Successfully inserted to MongoDB
+[ 2026-04-15 08:43:15,002 ] 11 root - INFO - Enter the Try Block
+[ 2026-04-15 08:43:15,003 ] 16 root - INFO - Initiate data Ingestion
+[ 2026-04-15 08:43:42,342 ] 11 root - INFO - Enter the Try Block
+[ 2026-04-15 08:43:42,342 ] 16 root - INFO - Initiate data Ingestion
+[ 2026-04-15 08:46:29,108 ] 11 root - INFO - Enter the Try Block
+[ 2026-04-15 08:46:29,108 ] 16 root - INFO - Initiate data Ingestion
+[ 2026-04-15 08:46:29,108 ] 126 root - INFO - Initiating Data Ingestion process
+[ 2026-04-15 08:46:29,108 ] 38 root - INFO - Connecting to MongoDB
+[ 2026-04-15 08:47:48,782 ] 11 root - INFO - Enter the Try Block
+[ 2026-04-15 08:47:48,782 ] 16 root - INFO - Initiate data Ingestion
+[ 2026-04-15 08:47:48,782 ] 126 root - INFO - Initiating Data Ingestion process
+[ 2026-04-15 08:47:48,782 ] 38 root - INFO - Connecting to MongoDB
+[ 2026-04-15 08:47:53,095 ] 54 root - INFO - Data exported successfully from MongoDB. Shape: (33165, 31)
+[ 2026-04-15 08:47:53,095 ] 72 root - INFO - Saving data into feature store
+[ 2026-04-15 08:47:53,197 ] 79 root - INFO - Data saved to feature store at Artifacts\04_15_2026_08_47_47\data_ingestion\feature_store\phisingData.csv
+[ 2026-04-15 08:47:53,197 ] 90 root - INFO - Performing train-test split
+[ 2026-04-15 08:47:53,205 ] 98 root - INFO - Performed Train-Test Split on Dataframe
+[ 2026-04-15 08:47:53,205 ] 105 root - INFO - Exporting Train and Test datasets
+[ 2026-04-15 08:47:53,306 ] 119 root - INFO - Exported Train and Test file paths
+[ 2026-04-15 08:47:53,306 ] 137 root - INFO - Data Ingestion completed successfully
