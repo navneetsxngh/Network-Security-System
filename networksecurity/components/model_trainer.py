@@ -24,10 +24,10 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 import mlflow
-# from urllib.parse import urlparse
+from urllib.parse import urlparse
 
-# import dagshub
-#dagshub.init(repo_owner='krishnaik06', repo_name='networksecurity', mlflow=True)
+import dagshub
+dagshub.init(repo_owner='navneetsxngh', repo_name='Network-Security-System', mlflow=True)
 
 # os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/krishnaik06/networksecurity.mlflow"
 # os.environ["MLFLOW_TRACKING_USERNAME"]="krishnaik06"

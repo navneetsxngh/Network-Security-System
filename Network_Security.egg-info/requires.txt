@@ -8,3 +8,4 @@ certifi
 scikit-learn
 PyYAML
 mlflow
+dagshub

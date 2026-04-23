@@ -308,3 +308,136 @@ Traceback (most recent call last):
   File "C:\Users\singh\OneDrive\Desktop\Network Security\networksecurity\components\model_trainer.py", line 170, in initiate_model_trainer
     raise NetworkSecurityException(e,sys)
 networksecurity.exception.exception.NetworkSecurityException: Error Occured in PYTHON script [C:\Users\singh\OneDrive\Desktop\Network Security\networksecurity\components\model_trainer.py] in line number [165], ERROR message ['RandomForestClassifier' object has no attribute 'strip']
+[ 2026-04-23 12:03:14,822 ] 1025 httpx - INFO - HTTP Request: POST https://dagshub.com/login/oauth/middleman "HTTP/1.1 200 OK" - _client
+[ 2026-04-23 12:03:16,298 ] 1025 httpx - INFO - HTTP Request: POST https://dagshub.com/login/oauth/access_token "HTTP/1.1 200 OK" - _client
+[ 2026-04-23 12:03:17,811 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK" - _client
+[ 2026-04-23 12:03:17,817 ] 107 dagshub - INFO - Accessing as navneetsxngh - helpers
+[ 2026-04-23 12:03:19,353 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/navneetsxngh/Network-Security-System "HTTP/1.1 200 OK" - _client
+[ 2026-04-23 12:03:20,909 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK" - _client
+[ 2026-04-23 12:03:20,911 ] 107 dagshub - INFO - Initialized MLflow to track repo "navneetsxngh/Network-Security-System" - helpers
+[ 2026-04-23 12:03:20,914 ] 107 dagshub - INFO - Repository navneetsxngh/Network-Security-System initialized! - helpers
+[ 2026-04-23 12:03:20,914 ] 27 root - INFO - ================================================================================ - main
+[ 2026-04-23 12:03:20,914 ] 28 root - INFO - \U0001f680 NETWORK SECURITY TRAINING PIPELINE STARTED - main
+[ 2026-04-23 12:03:20,914 ] 29 root - INFO - ================================================================================ - main
+[ 2026-04-23 12:03:20,914 ] 33 root - INFO - TrainingPipelineConfig initialized successfully. - main
+[ 2026-04-23 12:03:20,914 ] 38 root - INFO - Starting Data Ingestion Stage. - main
+[ 2026-04-23 12:03:20,914 ] 126 root - INFO - Initiating Data Ingestion process - data_ingestion
+[ 2026-04-23 12:03:20,914 ] 38 root - INFO - Connecting to MongoDB - data_ingestion
+[ 2026-04-23 12:03:29,681 ] 54 root - INFO - Data exported successfully from MongoDB. Shape: (33165, 31) - data_ingestion
+[ 2026-04-23 12:03:29,687 ] 72 root - INFO - Saving data into feature store - data_ingestion
+[ 2026-04-23 12:03:29,795 ] 79 root - INFO - Data saved to feature store at Artifacts\data_ingestion\feature_store\phisingData.csv - data_ingestion
+[ 2026-04-23 12:03:29,795 ] 90 root - INFO - Performing train-test split - data_ingestion
+[ 2026-04-23 12:03:29,804 ] 98 root - INFO - Performed Train-Test Split on Dataframe - data_ingestion
+[ 2026-04-23 12:03:29,804 ] 105 root - INFO - Exporting Train and Test datasets - data_ingestion
+[ 2026-04-23 12:03:29,920 ] 119 root - INFO - Exported Train and Test file paths - data_ingestion
+[ 2026-04-23 12:03:29,920 ] 137 root - INFO - Data Ingestion completed successfully - data_ingestion
+[ 2026-04-23 12:03:29,920 ] 44 root - INFO - Data Ingestion Artifact: DataIngestionArtifact(trained_file_path='Artifacts\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\data_ingestion\\ingested\\test.csv') - main
+[ 2026-04-23 12:03:29,920 ] 49 root - INFO - Data Ingestion Stage Completed. - main
+[ 2026-04-23 12:03:29,920 ] 50 root - INFO - -------------------------------------------------------------------------------- - main
+[ 2026-04-23 12:03:29,920 ] 55 root - INFO - Starting Data Validation Stage. - main
+[ 2026-04-23 12:03:29,920 ] 25 root - INFO - Initializing DataValidation class. - data_validation
+[ 2026-04-23 12:03:29,950 ] 29 root - INFO - Schema loaded from: data_schema\schema.yaml - data_validation
+[ 2026-04-23 12:03:29,951 ] 30 root - INFO - Schema Content: {'columns': {'having_IP_Address': 'int64', 'URL_Length': 'int64', 'Shortining_Service': 'int64', 'having_At_Symbol': 'int64', 'double_slash_redirecting': 'int64', 'Prefix_Suffix': 'int64', 'having_Sub_Domain': 'int64', 'SSLfinal_State': 'int64', 'Domain_registeration_length': 'int64', 'Favicon': 'int64', 'port': 'int64', 'HTTPS_token': 'int64', 'Request_URL': 'int64', 'URL_of_Anchor': 'int64', 'Links_in_tags': 'int64', 'SFH': 'int64', 'Submitting_to_email': 'int64', 'Abnormal_URL': 'int64', 'Redirect': 'int64', 'on_mouseover': 'int64', 'RightClick': 'int64', 'popUpWidnow': 'int64', 'Iframe': 'int64', 'age_of_domain': 'int64', 'DNSRecord': 'int64', 'web_traffic': 'int64', 'Page_Rank': 'int64', 'Google_Index': 'int64', 'Links_pointing_to_page': 'int64', 'Statistical_report': 'int64', 'Result': 'int64'}, 'numerical_columns': ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']} - data_validation
+[ 2026-04-23 12:03:29,951 ] 145 root - INFO - Starting data validation process. - data_validation
+[ 2026-04-23 12:03:29,951 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\train.csv - data_validation
+[ 2026-04-23 12:03:30,021 ] 39 root - INFO - Data loaded successfully with shape: (26532, 31) - data_validation
+[ 2026-04-23 12:03:30,021 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\test.csv - data_validation
+[ 2026-04-23 12:03:30,068 ] 39 root - INFO - Data loaded successfully with shape: (6633, 31) - data_validation
+[ 2026-04-23 12:03:30,068 ] 46 root - INFO - Starting column validation. - data_validation
+[ 2026-04-23 12:03:30,068 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result'] - data_validation
+[ 2026-04-23 12:03:30,068 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result'] - data_validation
+[ 2026-04-23 12:03:30,068 ] 80 root - INFO - Column validation passed successfully. - data_validation
+[ 2026-04-23 12:03:30,068 ] 46 root - INFO - Starting column validation. - data_validation
+[ 2026-04-23 12:03:30,068 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result'] - data_validation
+[ 2026-04-23 12:03:30,068 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result'] - data_validation
+[ 2026-04-23 12:03:30,068 ] 80 root - INFO - Column validation passed successfully. - data_validation
+[ 2026-04-23 12:03:30,068 ] 93 root - INFO - Starting dataset drift detection using KS test. - data_validation
+[ 2026-04-23 12:03:30,072 ] 102 root - INFO - Analyzing drift for column: having_IP_Address - data_validation
+[ 2026-04-23 12:03:30,077 ] 102 root - INFO - Analyzing drift for column: URL_Length - data_validation
+[ 2026-04-23 12:03:30,082 ] 102 root - INFO - Analyzing drift for column: Shortining_Service - data_validation
+[ 2026-04-23 12:03:30,084 ] 102 root - INFO - Analyzing drift for column: having_At_Symbol - data_validation
+[ 2026-04-23 12:03:30,086 ] 102 root - INFO - Analyzing drift for column: double_slash_redirecting - data_validation
+[ 2026-04-23 12:03:30,088 ] 102 root - INFO - Analyzing drift for column: Prefix_Suffix - data_validation
+[ 2026-04-23 12:03:30,091 ] 102 root - INFO - Analyzing drift for column: having_Sub_Domain - data_validation
+[ 2026-04-23 12:03:30,095 ] 102 root - INFO - Analyzing drift for column: SSLfinal_State - data_validation
+[ 2026-04-23 12:03:30,095 ] 102 root - INFO - Analyzing drift for column: Domain_registeration_length - data_validation
+[ 2026-04-23 12:03:30,101 ] 102 root - INFO - Analyzing drift for column: Favicon - data_validation
+[ 2026-04-23 12:03:30,101 ] 102 root - INFO - Analyzing drift for column: port - data_validation
+[ 2026-04-23 12:03:30,101 ] 102 root - INFO - Analyzing drift for column: HTTPS_token - data_validation
+[ 2026-04-23 12:03:30,101 ] 102 root - INFO - Analyzing drift for column: Request_URL - data_validation
+[ 2026-04-23 12:03:30,107 ] 102 root - INFO - Analyzing drift for column: URL_of_Anchor - data_validation
+[ 2026-04-23 12:03:30,110 ] 102 root - INFO - Analyzing drift for column: Links_in_tags - data_validation
+[ 2026-04-23 12:03:30,112 ] 102 root - INFO - Analyzing drift for column: SFH - data_validation
+[ 2026-04-23 12:03:30,112 ] 102 root - INFO - Analyzing drift for column: Submitting_to_email - data_validation
+[ 2026-04-23 12:03:30,112 ] 102 root - INFO - Analyzing drift for column: Abnormal_URL - data_validation
+[ 2026-04-23 12:03:30,122 ] 102 root - INFO - Analyzing drift for column: Redirect - data_validation
+[ 2026-04-23 12:03:30,126 ] 102 root - INFO - Analyzing drift for column: on_mouseover - data_validation
+[ 2026-04-23 12:03:30,127 ] 102 root - INFO - Analyzing drift for column: RightClick - data_validation
+[ 2026-04-23 12:03:30,129 ] 102 root - INFO - Analyzing drift for column: popUpWidnow - data_validation
+[ 2026-04-23 12:03:30,131 ] 102 root - INFO - Analyzing drift for column: Iframe - data_validation
+[ 2026-04-23 12:03:30,131 ] 102 root - INFO - Analyzing drift for column: age_of_domain - data_validation
+[ 2026-04-23 12:03:30,133 ] 102 root - INFO - Analyzing drift for column: DNSRecord - data_validation
+[ 2026-04-23 12:03:30,136 ] 102 root - INFO - Analyzing drift for column: web_traffic - data_validation
+[ 2026-04-23 12:03:30,138 ] 102 root - INFO - Analyzing drift for column: Page_Rank - data_validation
+[ 2026-04-23 12:03:30,142 ] 102 root - INFO - Analyzing drift for column: Google_Index - data_validation
+[ 2026-04-23 12:03:30,144 ] 102 root - INFO - Analyzing drift for column: Links_pointing_to_page - data_validation
+[ 2026-04-23 12:03:30,148 ] 102 root - INFO - Analyzing drift for column: Statistical_report - data_validation
+[ 2026-04-23 12:03:30,148 ] 102 root - INFO - Analyzing drift for column: Result - data_validation
+[ 2026-04-23 12:03:30,153 ] 135 root - INFO - Drift report saved at: Artifacts\data_validation\drift_report\report.yaml - data_validation
+[ 2026-04-23 12:03:30,153 ] 136 root - INFO - Overall drift status: True - data_validation
+[ 2026-04-23 12:03:30,254 ] 198 root - INFO - Validated train and test datasets saved successfully. - data_validation
+[ 2026-04-23 12:03:30,254 ] 211 root - INFO - Data validation artifact created successfully. - data_validation
+[ 2026-04-23 12:03:30,254 ] 212 root - INFO - Data validation process completed. - data_validation
+[ 2026-04-23 12:03:30,254 ] 65 root - INFO - Data Validation Artifact: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml') - main
+[ 2026-04-23 12:03:30,254 ] 70 root - INFO - Data Validation Stage Completed. - main
+[ 2026-04-23 12:03:30,254 ] 71 root - INFO - -------------------------------------------------------------------------------- - main
+[ 2026-04-23 12:03:30,254 ] 76 root - INFO - Starting Data Transformation Stage. - main
+[ 2026-04-23 12:03:30,254 ] 51 root - INFO - Entered initiate_transformation() method of DataTransformation Class - data_transformation
+[ 2026-04-23 12:03:30,254 ] 53 root - INFO - Stating Data Transformation - data_transformation
+[ 2026-04-23 12:03:30,374 ] 39 root - INFO - Entered get_data_transformer_object method of Transformation class - data_transformation
+[ 2026-04-23 12:03:30,374 ] 42 root - INFO - Initialise KNNimputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'} - data_transformation
+[ 2026-04-23 12:03:30,374 ] 47 root - INFO - Entered the save_object method of MainUtils class - utils
+[ 2026-04-23 12:03:30,391 ] 51 root - INFO - Exited the save_object method of MainUtils class - utils
+[ 2026-04-23 12:03:30,391 ] 87 root - INFO - Data Transformation Artifact: DataTransformationArtifact(transformed_object_file_path='Artifacts\\data_transformation\\transformed_object\\preprocessing.pkl', transformed_train_file_path='Artifacts\\data_transformation\\transformed\\train.npy', transformed_test_file_path='Artifacts\\data_transformation\\transformed\\test.npy') - main
+[ 2026-04-23 12:03:30,391 ] 92 root - INFO - Data Transformation Stage Completed. - main
+[ 2026-04-23 12:03:30,391 ] 93 root - INFO - -------------------------------------------------------------------------------- - main
+[ 2026-04-23 12:03:30,391 ] 98 root - INFO - Starting Model Training Stage. - main
+[ 2026-04-23 12:13:22,158 ] 119 root - ERROR - An error occurred during pipeline execution. - main
+Traceback (most recent call last):
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\networksecurity\components\model_trainer.py", line 165, in initiate_model_trainer
+    model_trainer_artifact=self.train_model(x_train,y_train,x_test,y_test)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\networksecurity\components\model_trainer.py", line 122, in train_model
+    self.track_mlflow(best_model,classification_train_metric)
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\networksecurity\components\model_trainer.py", line 64, in track_mlflow
+    mlflow.sklearn.log_model(best_model, "model", registered_model_name=best_model)
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\NetEnv\Lib\site-packages\mlflow\sklearn\__init__.py", line 478, in log_model
+    return Model.log(
+           ^^^^^^^^^^
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\NetEnv\Lib\site-packages\mlflow\models\model.py", line 1365, in log
+    registered_model = mlflow.tracking._model_registry.fluent._register_model(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\NetEnv\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 168, in _register_model
+    create_model_response = client.create_registered_model(name)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\NetEnv\Lib\site-packages\mlflow\tracking\client.py", line 3992, in create_registered_model
+    return self._get_registry_client().create_registered_model(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\NetEnv\Lib\site-packages\mlflow\telemetry\track.py", line 30, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\NetEnv\Lib\site-packages\mlflow\tracking\_model_registry\client.py", line 96, in create_registered_model
+    return self.store.create_registered_model(name, tags, description, deployment_job_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\NetEnv\Lib\site-packages\mlflow\store\model_registry\rest_store.py", line 118, in create_registered_model
+    CreateRegisteredModel(name=name, tags=proto_tags, description=description)
+TypeError: bad argument type for built-in operation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\main.py", line 107, in run_training_pipeline
+    model_trainer.initiate_model_trainer()
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\networksecurity\components\model_trainer.py", line 170, in initiate_model_trainer
+    raise NetworkSecurityException(e,sys)
+networksecurity.exception.exception.NetworkSecurityException: Error Occured in PYTHON script [C:\Users\singh\OneDrive\Desktop\Network Security\networksecurity\components\model_trainer.py] in line number [165], ERROR message [bad argument type for built-in operation]
