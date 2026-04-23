@@ -76,3 +76,342 @@
 [ 2026-04-16 08:04:53,549 ] 114 root - INFO - ================================================================================
 [ 2026-04-16 08:04:53,549 ] 115 root - INFO - \u2705 TRAINING PIPELINE COMPLETED SUCCESSFULLY
 [ 2026-04-16 08:04:53,549 ] 116 root - INFO - ================================================================================
+[ 2026-04-23 06:27:58,920 ] 27 root - INFO - ================================================================================
+[ 2026-04-23 06:27:58,920 ] 28 root - INFO - \U0001f680 NETWORK SECURITY TRAINING PIPELINE STARTED
+[ 2026-04-23 06:27:58,920 ] 29 root - INFO - ================================================================================
+[ 2026-04-23 06:27:58,920 ] 33 root - INFO - TrainingPipelineConfig initialized successfully.
+[ 2026-04-23 06:27:58,920 ] 38 root - INFO - Starting Data Ingestion Stage.
+[ 2026-04-23 06:27:58,920 ] 126 root - INFO - Initiating Data Ingestion process
+[ 2026-04-23 06:27:58,920 ] 38 root - INFO - Connecting to MongoDB
+[ 2026-04-23 06:29:15,053 ] 54 root - INFO - Data exported successfully from MongoDB. Shape: (33165, 31)
+[ 2026-04-23 06:29:15,057 ] 72 root - INFO - Saving data into feature store
+[ 2026-04-23 06:29:15,167 ] 79 root - INFO - Data saved to feature store at Artifacts\data_ingestion\feature_store\phisingData.csv
+[ 2026-04-23 06:29:15,167 ] 90 root - INFO - Performing train-test split
+[ 2026-04-23 06:29:15,167 ] 98 root - INFO - Performed Train-Test Split on Dataframe
+[ 2026-04-23 06:29:15,167 ] 105 root - INFO - Exporting Train and Test datasets
+[ 2026-04-23 06:29:15,262 ] 119 root - INFO - Exported Train and Test file paths
+[ 2026-04-23 06:29:15,262 ] 137 root - INFO - Data Ingestion completed successfully
+[ 2026-04-23 06:29:15,262 ] 44 root - INFO - Data Ingestion Artifact: DataIngestionArtifact(trained_file_path='Artifacts\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\data_ingestion\\ingested\\test.csv')
+[ 2026-04-23 06:29:15,262 ] 49 root - INFO - Data Ingestion Stage Completed.
+[ 2026-04-23 06:29:15,262 ] 50 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 06:29:15,262 ] 55 root - INFO - Starting Data Validation Stage.
+[ 2026-04-23 06:29:15,262 ] 25 root - INFO - Initializing DataValidation class.
+[ 2026-04-23 06:29:15,292 ] 29 root - INFO - Schema loaded from: data_schema\schema.yaml
+[ 2026-04-23 06:29:15,292 ] 30 root - INFO - Schema Content: {'columns': {'having_IP_Address': 'int64', 'URL_Length': 'int64', 'Shortining_Service': 'int64', 'having_At_Symbol': 'int64', 'double_slash_redirecting': 'int64', 'Prefix_Suffix': 'int64', 'having_Sub_Domain': 'int64', 'SSLfinal_State': 'int64', 'Domain_registeration_length': 'int64', 'Favicon': 'int64', 'port': 'int64', 'HTTPS_token': 'int64', 'Request_URL': 'int64', 'URL_of_Anchor': 'int64', 'Links_in_tags': 'int64', 'SFH': 'int64', 'Submitting_to_email': 'int64', 'Abnormal_URL': 'int64', 'Redirect': 'int64', 'on_mouseover': 'int64', 'RightClick': 'int64', 'popUpWidnow': 'int64', 'Iframe': 'int64', 'age_of_domain': 'int64', 'DNSRecord': 'int64', 'web_traffic': 'int64', 'Page_Rank': 'int64', 'Google_Index': 'int64', 'Links_pointing_to_page': 'int64', 'Statistical_report': 'int64', 'Result': 'int64'}, 'numerical_columns': ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']}
+[ 2026-04-23 06:29:15,292 ] 145 root - INFO - Starting data validation process.
+[ 2026-04-23 06:29:15,292 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\train.csv
+[ 2026-04-23 06:29:15,366 ] 39 root - INFO - Data loaded successfully with shape: (26532, 31)
+[ 2026-04-23 06:29:15,366 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\test.csv
+[ 2026-04-23 06:29:15,427 ] 39 root - INFO - Data loaded successfully with shape: (6633, 31)
+[ 2026-04-23 06:29:15,427 ] 46 root - INFO - Starting column validation.
+[ 2026-04-23 06:29:15,427 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 06:29:15,428 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 06:29:15,428 ] 80 root - INFO - Column validation passed successfully.
+[ 2026-04-23 06:29:15,428 ] 46 root - INFO - Starting column validation.
+[ 2026-04-23 06:29:15,428 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 06:29:15,428 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 06:29:15,428 ] 80 root - INFO - Column validation passed successfully.
+[ 2026-04-23 06:29:15,428 ] 93 root - INFO - Starting dataset drift detection using KS test.
+[ 2026-04-23 06:29:15,429 ] 102 root - INFO - Analyzing drift for column: having_IP_Address
+[ 2026-04-23 06:29:15,429 ] 102 root - INFO - Analyzing drift for column: URL_Length
+[ 2026-04-23 06:29:15,429 ] 102 root - INFO - Analyzing drift for column: Shortining_Service
+[ 2026-04-23 06:29:15,429 ] 102 root - INFO - Analyzing drift for column: having_At_Symbol
+[ 2026-04-23 06:29:15,429 ] 102 root - INFO - Analyzing drift for column: double_slash_redirecting
+[ 2026-04-23 06:29:15,429 ] 102 root - INFO - Analyzing drift for column: Prefix_Suffix
+[ 2026-04-23 06:29:15,447 ] 102 root - INFO - Analyzing drift for column: having_Sub_Domain
+[ 2026-04-23 06:29:15,451 ] 102 root - INFO - Analyzing drift for column: SSLfinal_State
+[ 2026-04-23 06:29:15,453 ] 102 root - INFO - Analyzing drift for column: Domain_registeration_length
+[ 2026-04-23 06:29:15,455 ] 102 root - INFO - Analyzing drift for column: Favicon
+[ 2026-04-23 06:29:15,457 ] 102 root - INFO - Analyzing drift for column: port
+[ 2026-04-23 06:29:15,457 ] 102 root - INFO - Analyzing drift for column: HTTPS_token
+[ 2026-04-23 06:29:15,459 ] 102 root - INFO - Analyzing drift for column: Request_URL
+[ 2026-04-23 06:29:15,461 ] 102 root - INFO - Analyzing drift for column: URL_of_Anchor
+[ 2026-04-23 06:29:15,461 ] 102 root - INFO - Analyzing drift for column: Links_in_tags
+[ 2026-04-23 06:29:15,461 ] 102 root - INFO - Analyzing drift for column: SFH
+[ 2026-04-23 06:29:15,461 ] 102 root - INFO - Analyzing drift for column: Submitting_to_email
+[ 2026-04-23 06:29:15,461 ] 102 root - INFO - Analyzing drift for column: Abnormal_URL
+[ 2026-04-23 06:29:15,461 ] 102 root - INFO - Analyzing drift for column: Redirect
+[ 2026-04-23 06:29:15,477 ] 102 root - INFO - Analyzing drift for column: on_mouseover
+[ 2026-04-23 06:29:15,477 ] 102 root - INFO - Analyzing drift for column: RightClick
+[ 2026-04-23 06:29:15,477 ] 102 root - INFO - Analyzing drift for column: popUpWidnow
+[ 2026-04-23 06:29:15,477 ] 102 root - INFO - Analyzing drift for column: Iframe
+[ 2026-04-23 06:29:15,477 ] 102 root - INFO - Analyzing drift for column: age_of_domain
+[ 2026-04-23 06:29:15,477 ] 102 root - INFO - Analyzing drift for column: DNSRecord
+[ 2026-04-23 06:29:15,477 ] 102 root - INFO - Analyzing drift for column: web_traffic
+[ 2026-04-23 06:29:15,477 ] 102 root - INFO - Analyzing drift for column: Page_Rank
+[ 2026-04-23 06:29:15,493 ] 102 root - INFO - Analyzing drift for column: Google_Index
+[ 2026-04-23 06:29:15,493 ] 102 root - INFO - Analyzing drift for column: Links_pointing_to_page
+[ 2026-04-23 06:29:15,493 ] 102 root - INFO - Analyzing drift for column: Statistical_report
+[ 2026-04-23 06:29:15,493 ] 102 root - INFO - Analyzing drift for column: Result
+[ 2026-04-23 06:29:15,507 ] 135 root - INFO - Drift report saved at: Artifacts\data_validation\drift_report\report.yaml
+[ 2026-04-23 06:29:15,507 ] 136 root - INFO - Overall drift status: True
+[ 2026-04-23 06:29:15,589 ] 198 root - INFO - Validated train and test datasets saved successfully.
+[ 2026-04-23 06:29:15,589 ] 211 root - INFO - Data validation artifact created successfully.
+[ 2026-04-23 06:29:15,589 ] 212 root - INFO - Data validation process completed.
+[ 2026-04-23 06:29:15,589 ] 65 root - INFO - Data Validation Artifact: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+[ 2026-04-23 06:29:15,589 ] 70 root - INFO - Data Validation Stage Completed.
+[ 2026-04-23 06:29:15,589 ] 71 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 06:29:15,589 ] 114 root - INFO - ================================================================================
+[ 2026-04-23 06:29:15,589 ] 115 root - INFO - \u2705 TRAINING PIPELINE COMPLETED SUCCESSFULLY
+[ 2026-04-23 06:29:15,589 ] 116 root - INFO - ================================================================================
+[ 2026-04-23 07:23:29,789 ] 27 root - INFO - ================================================================================
+[ 2026-04-23 07:23:29,789 ] 28 root - INFO - \U0001f680 NETWORK SECURITY TRAINING PIPELINE STARTED
+[ 2026-04-23 07:23:29,789 ] 29 root - INFO - ================================================================================
+[ 2026-04-23 07:23:29,789 ] 33 root - INFO - TrainingPipelineConfig initialized successfully.
+[ 2026-04-23 07:23:29,789 ] 38 root - INFO - Starting Data Ingestion Stage.
+[ 2026-04-23 07:23:29,790 ] 126 root - INFO - Initiating Data Ingestion process
+[ 2026-04-23 07:23:29,790 ] 38 root - INFO - Connecting to MongoDB
+[ 2026-04-23 07:23:38,634 ] 54 root - INFO - Data exported successfully from MongoDB. Shape: (33165, 31)
+[ 2026-04-23 07:23:38,635 ] 72 root - INFO - Saving data into feature store
+[ 2026-04-23 07:23:38,804 ] 79 root - INFO - Data saved to feature store at Artifacts\data_ingestion\feature_store\phisingData.csv
+[ 2026-04-23 07:23:38,804 ] 90 root - INFO - Performing train-test split
+[ 2026-04-23 07:23:38,813 ] 98 root - INFO - Performed Train-Test Split on Dataframe
+[ 2026-04-23 07:23:38,813 ] 105 root - INFO - Exporting Train and Test datasets
+[ 2026-04-23 07:23:38,967 ] 119 root - INFO - Exported Train and Test file paths
+[ 2026-04-23 07:23:38,969 ] 137 root - INFO - Data Ingestion completed successfully
+[ 2026-04-23 07:23:38,969 ] 44 root - INFO - Data Ingestion Artifact: DataIngestionArtifact(trained_file_path='Artifacts\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\data_ingestion\\ingested\\test.csv')
+[ 2026-04-23 07:23:38,970 ] 49 root - INFO - Data Ingestion Stage Completed.
+[ 2026-04-23 07:23:38,970 ] 50 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 07:23:38,970 ] 55 root - INFO - Starting Data Validation Stage.
+[ 2026-04-23 07:23:38,970 ] 25 root - INFO - Initializing DataValidation class.
+[ 2026-04-23 07:23:38,992 ] 29 root - INFO - Schema loaded from: data_schema\schema.yaml
+[ 2026-04-23 07:23:38,992 ] 30 root - INFO - Schema Content: {'columns': {'having_IP_Address': 'int64', 'URL_Length': 'int64', 'Shortining_Service': 'int64', 'having_At_Symbol': 'int64', 'double_slash_redirecting': 'int64', 'Prefix_Suffix': 'int64', 'having_Sub_Domain': 'int64', 'SSLfinal_State': 'int64', 'Domain_registeration_length': 'int64', 'Favicon': 'int64', 'port': 'int64', 'HTTPS_token': 'int64', 'Request_URL': 'int64', 'URL_of_Anchor': 'int64', 'Links_in_tags': 'int64', 'SFH': 'int64', 'Submitting_to_email': 'int64', 'Abnormal_URL': 'int64', 'Redirect': 'int64', 'on_mouseover': 'int64', 'RightClick': 'int64', 'popUpWidnow': 'int64', 'Iframe': 'int64', 'age_of_domain': 'int64', 'DNSRecord': 'int64', 'web_traffic': 'int64', 'Page_Rank': 'int64', 'Google_Index': 'int64', 'Links_pointing_to_page': 'int64', 'Statistical_report': 'int64', 'Result': 'int64'}, 'numerical_columns': ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']}
+[ 2026-04-23 07:23:38,993 ] 145 root - INFO - Starting data validation process.
+[ 2026-04-23 07:23:38,993 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\train.csv
+[ 2026-04-23 07:23:39,076 ] 39 root - INFO - Data loaded successfully with shape: (26532, 31)
+[ 2026-04-23 07:23:39,076 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\test.csv
+[ 2026-04-23 07:23:39,127 ] 39 root - INFO - Data loaded successfully with shape: (6633, 31)
+[ 2026-04-23 07:23:39,127 ] 46 root - INFO - Starting column validation.
+[ 2026-04-23 07:23:39,127 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:23:39,128 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:23:39,128 ] 80 root - INFO - Column validation passed successfully.
+[ 2026-04-23 07:23:39,128 ] 46 root - INFO - Starting column validation.
+[ 2026-04-23 07:23:39,128 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:23:39,128 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:23:39,128 ] 80 root - INFO - Column validation passed successfully.
+[ 2026-04-23 07:23:39,128 ] 93 root - INFO - Starting dataset drift detection using KS test.
+[ 2026-04-23 07:23:39,128 ] 102 root - INFO - Analyzing drift for column: having_IP_Address
+[ 2026-04-23 07:23:39,132 ] 102 root - INFO - Analyzing drift for column: URL_Length
+[ 2026-04-23 07:23:39,138 ] 102 root - INFO - Analyzing drift for column: Shortining_Service
+[ 2026-04-23 07:23:39,142 ] 102 root - INFO - Analyzing drift for column: having_At_Symbol
+[ 2026-04-23 07:23:39,142 ] 102 root - INFO - Analyzing drift for column: double_slash_redirecting
+[ 2026-04-23 07:23:39,146 ] 102 root - INFO - Analyzing drift for column: Prefix_Suffix
+[ 2026-04-23 07:23:39,150 ] 102 root - INFO - Analyzing drift for column: having_Sub_Domain
+[ 2026-04-23 07:23:39,153 ] 102 root - INFO - Analyzing drift for column: SSLfinal_State
+[ 2026-04-23 07:23:39,156 ] 102 root - INFO - Analyzing drift for column: Domain_registeration_length
+[ 2026-04-23 07:23:39,159 ] 102 root - INFO - Analyzing drift for column: Favicon
+[ 2026-04-23 07:23:39,161 ] 102 root - INFO - Analyzing drift for column: port
+[ 2026-04-23 07:23:39,163 ] 102 root - INFO - Analyzing drift for column: HTTPS_token
+[ 2026-04-23 07:23:39,165 ] 102 root - INFO - Analyzing drift for column: Request_URL
+[ 2026-04-23 07:23:39,168 ] 102 root - INFO - Analyzing drift for column: URL_of_Anchor
+[ 2026-04-23 07:23:39,171 ] 102 root - INFO - Analyzing drift for column: Links_in_tags
+[ 2026-04-23 07:23:39,175 ] 102 root - INFO - Analyzing drift for column: SFH
+[ 2026-04-23 07:23:39,178 ] 102 root - INFO - Analyzing drift for column: Submitting_to_email
+[ 2026-04-23 07:23:39,180 ] 102 root - INFO - Analyzing drift for column: Abnormal_URL
+[ 2026-04-23 07:23:39,182 ] 102 root - INFO - Analyzing drift for column: Redirect
+[ 2026-04-23 07:23:39,186 ] 102 root - INFO - Analyzing drift for column: on_mouseover
+[ 2026-04-23 07:23:39,189 ] 102 root - INFO - Analyzing drift for column: RightClick
+[ 2026-04-23 07:23:39,190 ] 102 root - INFO - Analyzing drift for column: popUpWidnow
+[ 2026-04-23 07:23:39,192 ] 102 root - INFO - Analyzing drift for column: Iframe
+[ 2026-04-23 07:23:39,194 ] 102 root - INFO - Analyzing drift for column: age_of_domain
+[ 2026-04-23 07:23:39,197 ] 102 root - INFO - Analyzing drift for column: DNSRecord
+[ 2026-04-23 07:23:39,201 ] 102 root - INFO - Analyzing drift for column: web_traffic
+[ 2026-04-23 07:23:39,203 ] 102 root - INFO - Analyzing drift for column: Page_Rank
+[ 2026-04-23 07:23:39,208 ] 102 root - INFO - Analyzing drift for column: Google_Index
+[ 2026-04-23 07:23:39,210 ] 102 root - INFO - Analyzing drift for column: Links_pointing_to_page
+[ 2026-04-23 07:23:39,215 ] 102 root - INFO - Analyzing drift for column: Statistical_report
+[ 2026-04-23 07:23:39,217 ] 102 root - INFO - Analyzing drift for column: Result
+[ 2026-04-23 07:23:39,223 ] 135 root - INFO - Drift report saved at: Artifacts\data_validation\drift_report\report.yaml
+[ 2026-04-23 07:23:39,223 ] 136 root - INFO - Overall drift status: True
+[ 2026-04-23 07:23:39,349 ] 198 root - INFO - Validated train and test datasets saved successfully.
+[ 2026-04-23 07:23:39,349 ] 211 root - INFO - Data validation artifact created successfully.
+[ 2026-04-23 07:23:39,349 ] 212 root - INFO - Data validation process completed.
+[ 2026-04-23 07:23:39,351 ] 65 root - INFO - Data Validation Artifact: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+[ 2026-04-23 07:23:39,351 ] 70 root - INFO - Data Validation Stage Completed.
+[ 2026-04-23 07:23:39,351 ] 71 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 07:23:39,351 ] 76 root - INFO - Starting Data Transformation Stage.
+[ 2026-04-23 07:23:39,351 ] 119 root - ERROR - An error occurred during pipeline execution.
+Traceback (most recent call last):
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\main.py", line 77, in run_training_pipeline
+    data_transformation_config = DataTransformationConfig(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\singh\OneDrive\Desktop\Network Security\networksecurity\entity\config_entity.py", line 66, in __init__
+    training_pipeline.PREPROCESSING_OBJECT_FILE_NAME,)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'networksecurity.constant.training_pipeline' has no attribute 'PREPROCESSING_OBJECT_FILE_NAME'
+[ 2026-04-23 07:25:50,175 ] 27 root - INFO - ================================================================================
+[ 2026-04-23 07:25:50,175 ] 28 root - INFO - \U0001f680 NETWORK SECURITY TRAINING PIPELINE STARTED
+[ 2026-04-23 07:25:50,175 ] 29 root - INFO - ================================================================================
+[ 2026-04-23 07:25:50,175 ] 33 root - INFO - TrainingPipelineConfig initialized successfully.
+[ 2026-04-23 07:25:50,175 ] 38 root - INFO - Starting Data Ingestion Stage.
+[ 2026-04-23 07:25:50,176 ] 126 root - INFO - Initiating Data Ingestion process
+[ 2026-04-23 07:25:50,176 ] 38 root - INFO - Connecting to MongoDB
+[ 2026-04-23 07:25:59,731 ] 54 root - INFO - Data exported successfully from MongoDB. Shape: (33165, 31)
+[ 2026-04-23 07:25:59,731 ] 72 root - INFO - Saving data into feature store
+[ 2026-04-23 07:25:59,859 ] 79 root - INFO - Data saved to feature store at Artifacts\data_ingestion\feature_store\phisingData.csv
+[ 2026-04-23 07:25:59,859 ] 90 root - INFO - Performing train-test split
+[ 2026-04-23 07:25:59,867 ] 98 root - INFO - Performed Train-Test Split on Dataframe
+[ 2026-04-23 07:25:59,868 ] 105 root - INFO - Exporting Train and Test datasets
+[ 2026-04-23 07:26:00,038 ] 119 root - INFO - Exported Train and Test file paths
+[ 2026-04-23 07:26:00,039 ] 137 root - INFO - Data Ingestion completed successfully
+[ 2026-04-23 07:26:00,039 ] 44 root - INFO - Data Ingestion Artifact: DataIngestionArtifact(trained_file_path='Artifacts\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\data_ingestion\\ingested\\test.csv')
+[ 2026-04-23 07:26:00,039 ] 49 root - INFO - Data Ingestion Stage Completed.
+[ 2026-04-23 07:26:00,040 ] 50 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 07:26:00,040 ] 55 root - INFO - Starting Data Validation Stage.
+[ 2026-04-23 07:26:00,040 ] 25 root - INFO - Initializing DataValidation class.
+[ 2026-04-23 07:26:00,045 ] 29 root - INFO - Schema loaded from: data_schema\schema.yaml
+[ 2026-04-23 07:26:00,045 ] 30 root - INFO - Schema Content: {'columns': {'having_IP_Address': 'int64', 'URL_Length': 'int64', 'Shortining_Service': 'int64', 'having_At_Symbol': 'int64', 'double_slash_redirecting': 'int64', 'Prefix_Suffix': 'int64', 'having_Sub_Domain': 'int64', 'SSLfinal_State': 'int64', 'Domain_registeration_length': 'int64', 'Favicon': 'int64', 'port': 'int64', 'HTTPS_token': 'int64', 'Request_URL': 'int64', 'URL_of_Anchor': 'int64', 'Links_in_tags': 'int64', 'SFH': 'int64', 'Submitting_to_email': 'int64', 'Abnormal_URL': 'int64', 'Redirect': 'int64', 'on_mouseover': 'int64', 'RightClick': 'int64', 'popUpWidnow': 'int64', 'Iframe': 'int64', 'age_of_domain': 'int64', 'DNSRecord': 'int64', 'web_traffic': 'int64', 'Page_Rank': 'int64', 'Google_Index': 'int64', 'Links_pointing_to_page': 'int64', 'Statistical_report': 'int64', 'Result': 'int64'}, 'numerical_columns': ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']}
+[ 2026-04-23 07:26:00,045 ] 145 root - INFO - Starting data validation process.
+[ 2026-04-23 07:26:00,045 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\train.csv
+[ 2026-04-23 07:26:00,133 ] 39 root - INFO - Data loaded successfully with shape: (26532, 31)
+[ 2026-04-23 07:26:00,133 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\test.csv
+[ 2026-04-23 07:26:00,180 ] 39 root - INFO - Data loaded successfully with shape: (6633, 31)
+[ 2026-04-23 07:26:00,180 ] 46 root - INFO - Starting column validation.
+[ 2026-04-23 07:26:00,180 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:26:00,180 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:26:00,181 ] 80 root - INFO - Column validation passed successfully.
+[ 2026-04-23 07:26:00,181 ] 46 root - INFO - Starting column validation.
+[ 2026-04-23 07:26:00,181 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:26:00,181 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:26:00,181 ] 80 root - INFO - Column validation passed successfully.
+[ 2026-04-23 07:26:00,181 ] 93 root - INFO - Starting dataset drift detection using KS test.
+[ 2026-04-23 07:26:00,181 ] 102 root - INFO - Analyzing drift for column: having_IP_Address
+[ 2026-04-23 07:26:00,185 ] 102 root - INFO - Analyzing drift for column: URL_Length
+[ 2026-04-23 07:26:00,189 ] 102 root - INFO - Analyzing drift for column: Shortining_Service
+[ 2026-04-23 07:26:00,196 ] 102 root - INFO - Analyzing drift for column: having_At_Symbol
+[ 2026-04-23 07:26:00,197 ] 102 root - INFO - Analyzing drift for column: double_slash_redirecting
+[ 2026-04-23 07:26:00,200 ] 102 root - INFO - Analyzing drift for column: Prefix_Suffix
+[ 2026-04-23 07:26:00,203 ] 102 root - INFO - Analyzing drift for column: having_Sub_Domain
+[ 2026-04-23 07:26:00,207 ] 102 root - INFO - Analyzing drift for column: SSLfinal_State
+[ 2026-04-23 07:26:00,210 ] 102 root - INFO - Analyzing drift for column: Domain_registeration_length
+[ 2026-04-23 07:26:00,212 ] 102 root - INFO - Analyzing drift for column: Favicon
+[ 2026-04-23 07:26:00,213 ] 102 root - INFO - Analyzing drift for column: port
+[ 2026-04-23 07:26:00,214 ] 102 root - INFO - Analyzing drift for column: HTTPS_token
+[ 2026-04-23 07:26:00,215 ] 102 root - INFO - Analyzing drift for column: Request_URL
+[ 2026-04-23 07:26:00,219 ] 102 root - INFO - Analyzing drift for column: URL_of_Anchor
+[ 2026-04-23 07:26:00,222 ] 102 root - INFO - Analyzing drift for column: Links_in_tags
+[ 2026-04-23 07:26:00,226 ] 102 root - INFO - Analyzing drift for column: SFH
+[ 2026-04-23 07:26:00,229 ] 102 root - INFO - Analyzing drift for column: Submitting_to_email
+[ 2026-04-23 07:26:00,229 ] 102 root - INFO - Analyzing drift for column: Abnormal_URL
+[ 2026-04-23 07:26:00,232 ] 102 root - INFO - Analyzing drift for column: Redirect
+[ 2026-04-23 07:26:00,236 ] 102 root - INFO - Analyzing drift for column: on_mouseover
+[ 2026-04-23 07:26:00,238 ] 102 root - INFO - Analyzing drift for column: RightClick
+[ 2026-04-23 07:26:00,239 ] 102 root - INFO - Analyzing drift for column: popUpWidnow
+[ 2026-04-23 07:26:00,242 ] 102 root - INFO - Analyzing drift for column: Iframe
+[ 2026-04-23 07:26:00,243 ] 102 root - INFO - Analyzing drift for column: age_of_domain
+[ 2026-04-23 07:26:00,246 ] 102 root - INFO - Analyzing drift for column: DNSRecord
+[ 2026-04-23 07:26:00,249 ] 102 root - INFO - Analyzing drift for column: web_traffic
+[ 2026-04-23 07:26:00,252 ] 102 root - INFO - Analyzing drift for column: Page_Rank
+[ 2026-04-23 07:26:00,256 ] 102 root - INFO - Analyzing drift for column: Google_Index
+[ 2026-04-23 07:26:00,257 ] 102 root - INFO - Analyzing drift for column: Links_pointing_to_page
+[ 2026-04-23 07:26:00,262 ] 102 root - INFO - Analyzing drift for column: Statistical_report
+[ 2026-04-23 07:26:00,263 ] 102 root - INFO - Analyzing drift for column: Result
+[ 2026-04-23 07:26:00,269 ] 135 root - INFO - Drift report saved at: Artifacts\data_validation\drift_report\report.yaml
+[ 2026-04-23 07:26:00,269 ] 136 root - INFO - Overall drift status: True
+[ 2026-04-23 07:26:00,410 ] 198 root - INFO - Validated train and test datasets saved successfully.
+[ 2026-04-23 07:26:00,411 ] 211 root - INFO - Data validation artifact created successfully.
+[ 2026-04-23 07:26:00,411 ] 212 root - INFO - Data validation process completed.
+[ 2026-04-23 07:26:00,412 ] 65 root - INFO - Data Validation Artifact: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+[ 2026-04-23 07:26:00,412 ] 70 root - INFO - Data Validation Stage Completed.
+[ 2026-04-23 07:26:00,412 ] 71 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 07:26:00,412 ] 76 root - INFO - Starting Data Transformation Stage.
+[ 2026-04-23 07:26:00,412 ] 51 root - INFO - Entered initiate_transformation() method of DataTransformation Class
+[ 2026-04-23 07:26:00,412 ] 53 root - INFO - Stating Data Transformation
+[ 2026-04-23 07:26:00,578 ] 39 root - INFO - Entered get_data_transformer_object method of Transformation class
+[ 2026-04-23 07:26:00,578 ] 42 root - INFO - Initialise KNNimputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[ 2026-04-23 07:26:00,609 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2026-04-23 07:26:00,611 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2026-04-23 07:26:00,613 ] 87 root - INFO - Data Transformation Artifact: None
+[ 2026-04-23 07:26:00,614 ] 92 root - INFO - Data Transformation Stage Completed.
+[ 2026-04-23 07:26:00,614 ] 93 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 07:26:00,614 ] 114 root - INFO - ================================================================================
+[ 2026-04-23 07:26:00,614 ] 115 root - INFO - \u2705 TRAINING PIPELINE COMPLETED SUCCESSFULLY
+[ 2026-04-23 07:26:00,614 ] 116 root - INFO - ================================================================================
+[ 2026-04-23 07:26:42,809 ] 27 root - INFO - ================================================================================
+[ 2026-04-23 07:26:42,809 ] 28 root - INFO - \U0001f680 NETWORK SECURITY TRAINING PIPELINE STARTED
+[ 2026-04-23 07:26:42,809 ] 29 root - INFO - ================================================================================
+[ 2026-04-23 07:26:42,809 ] 33 root - INFO - TrainingPipelineConfig initialized successfully.
+[ 2026-04-23 07:26:42,809 ] 38 root - INFO - Starting Data Ingestion Stage.
+[ 2026-04-23 07:26:42,809 ] 126 root - INFO - Initiating Data Ingestion process
+[ 2026-04-23 07:26:42,809 ] 38 root - INFO - Connecting to MongoDB
+[ 2026-04-23 07:26:51,230 ] 54 root - INFO - Data exported successfully from MongoDB. Shape: (33165, 31)
+[ 2026-04-23 07:26:51,231 ] 72 root - INFO - Saving data into feature store
+[ 2026-04-23 07:26:51,357 ] 79 root - INFO - Data saved to feature store at Artifacts\data_ingestion\feature_store\phisingData.csv
+[ 2026-04-23 07:26:51,357 ] 90 root - INFO - Performing train-test split
+[ 2026-04-23 07:26:51,364 ] 98 root - INFO - Performed Train-Test Split on Dataframe
+[ 2026-04-23 07:26:51,366 ] 105 root - INFO - Exporting Train and Test datasets
+[ 2026-04-23 07:26:51,496 ] 119 root - INFO - Exported Train and Test file paths
+[ 2026-04-23 07:26:51,497 ] 137 root - INFO - Data Ingestion completed successfully
+[ 2026-04-23 07:26:51,497 ] 44 root - INFO - Data Ingestion Artifact: DataIngestionArtifact(trained_file_path='Artifacts\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\data_ingestion\\ingested\\test.csv')
+[ 2026-04-23 07:26:51,498 ] 49 root - INFO - Data Ingestion Stage Completed.
+[ 2026-04-23 07:26:51,498 ] 50 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 07:26:51,498 ] 55 root - INFO - Starting Data Validation Stage.
+[ 2026-04-23 07:26:51,498 ] 25 root - INFO - Initializing DataValidation class.
+[ 2026-04-23 07:26:51,502 ] 29 root - INFO - Schema loaded from: data_schema\schema.yaml
+[ 2026-04-23 07:26:51,502 ] 30 root - INFO - Schema Content: {'columns': {'having_IP_Address': 'int64', 'URL_Length': 'int64', 'Shortining_Service': 'int64', 'having_At_Symbol': 'int64', 'double_slash_redirecting': 'int64', 'Prefix_Suffix': 'int64', 'having_Sub_Domain': 'int64', 'SSLfinal_State': 'int64', 'Domain_registeration_length': 'int64', 'Favicon': 'int64', 'port': 'int64', 'HTTPS_token': 'int64', 'Request_URL': 'int64', 'URL_of_Anchor': 'int64', 'Links_in_tags': 'int64', 'SFH': 'int64', 'Submitting_to_email': 'int64', 'Abnormal_URL': 'int64', 'Redirect': 'int64', 'on_mouseover': 'int64', 'RightClick': 'int64', 'popUpWidnow': 'int64', 'Iframe': 'int64', 'age_of_domain': 'int64', 'DNSRecord': 'int64', 'web_traffic': 'int64', 'Page_Rank': 'int64', 'Google_Index': 'int64', 'Links_pointing_to_page': 'int64', 'Statistical_report': 'int64', 'Result': 'int64'}, 'numerical_columns': ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']}
+[ 2026-04-23 07:26:51,502 ] 145 root - INFO - Starting data validation process.
+[ 2026-04-23 07:26:51,502 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\train.csv
+[ 2026-04-23 07:26:51,594 ] 39 root - INFO - Data loaded successfully with shape: (26532, 31)
+[ 2026-04-23 07:26:51,594 ] 37 root - INFO - Reading data from: Artifacts\data_ingestion\ingested\test.csv
+[ 2026-04-23 07:26:51,669 ] 39 root - INFO - Data loaded successfully with shape: (6633, 31)
+[ 2026-04-23 07:26:51,669 ] 46 root - INFO - Starting column validation.
+[ 2026-04-23 07:26:51,669 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:26:51,669 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:26:51,670 ] 80 root - INFO - Column validation passed successfully.
+[ 2026-04-23 07:26:51,670 ] 46 root - INFO - Starting column validation.
+[ 2026-04-23 07:26:51,670 ] 63 root - INFO - Expected Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:26:51,670 ] 64 root - INFO - Actual Columns: ['having_IP_Address', 'URL_Length', 'Shortining_Service', 'having_At_Symbol', 'double_slash_redirecting', 'Prefix_Suffix', 'having_Sub_Domain', 'SSLfinal_State', 'Domain_registeration_length', 'Favicon', 'port', 'HTTPS_token', 'Request_URL', 'URL_of_Anchor', 'Links_in_tags', 'SFH', 'Submitting_to_email', 'Abnormal_URL', 'Redirect', 'on_mouseover', 'RightClick', 'popUpWidnow', 'Iframe', 'age_of_domain', 'DNSRecord', 'web_traffic', 'Page_Rank', 'Google_Index', 'Links_pointing_to_page', 'Statistical_report', 'Result']
+[ 2026-04-23 07:26:51,670 ] 80 root - INFO - Column validation passed successfully.
+[ 2026-04-23 07:26:51,670 ] 93 root - INFO - Starting dataset drift detection using KS test.
+[ 2026-04-23 07:26:51,670 ] 102 root - INFO - Analyzing drift for column: having_IP_Address
+[ 2026-04-23 07:26:51,676 ] 102 root - INFO - Analyzing drift for column: URL_Length
+[ 2026-04-23 07:26:51,683 ] 102 root - INFO - Analyzing drift for column: Shortining_Service
+[ 2026-04-23 07:26:51,684 ] 102 root - INFO - Analyzing drift for column: having_At_Symbol
+[ 2026-04-23 07:26:51,684 ] 102 root - INFO - Analyzing drift for column: double_slash_redirecting
+[ 2026-04-23 07:26:51,690 ] 102 root - INFO - Analyzing drift for column: Prefix_Suffix
+[ 2026-04-23 07:26:51,690 ] 102 root - INFO - Analyzing drift for column: having_Sub_Domain
+[ 2026-04-23 07:26:51,697 ] 102 root - INFO - Analyzing drift for column: SSLfinal_State
+[ 2026-04-23 07:26:51,697 ] 102 root - INFO - Analyzing drift for column: Domain_registeration_length
+[ 2026-04-23 07:26:51,704 ] 102 root - INFO - Analyzing drift for column: Favicon
+[ 2026-04-23 07:26:51,704 ] 102 root - INFO - Analyzing drift for column: port
+[ 2026-04-23 07:26:51,704 ] 102 root - INFO - Analyzing drift for column: HTTPS_token
+[ 2026-04-23 07:26:51,704 ] 102 root - INFO - Analyzing drift for column: Request_URL
+[ 2026-04-23 07:26:51,712 ] 102 root - INFO - Analyzing drift for column: URL_of_Anchor
+[ 2026-04-23 07:26:51,712 ] 102 root - INFO - Analyzing drift for column: Links_in_tags
+[ 2026-04-23 07:26:51,718 ] 102 root - INFO - Analyzing drift for column: SFH
+[ 2026-04-23 07:26:51,718 ] 102 root - INFO - Analyzing drift for column: Submitting_to_email
+[ 2026-04-23 07:26:51,718 ] 102 root - INFO - Analyzing drift for column: Abnormal_URL
+[ 2026-04-23 07:26:51,724 ] 102 root - INFO - Analyzing drift for column: Redirect
+[ 2026-04-23 07:26:51,731 ] 102 root - INFO - Analyzing drift for column: on_mouseover
+[ 2026-04-23 07:26:51,731 ] 102 root - INFO - Analyzing drift for column: RightClick
+[ 2026-04-23 07:26:51,731 ] 102 root - INFO - Analyzing drift for column: popUpWidnow
+[ 2026-04-23 07:26:51,731 ] 102 root - INFO - Analyzing drift for column: Iframe
+[ 2026-04-23 07:26:51,731 ] 102 root - INFO - Analyzing drift for column: age_of_domain
+[ 2026-04-23 07:26:51,731 ] 102 root - INFO - Analyzing drift for column: DNSRecord
+[ 2026-04-23 07:26:51,731 ] 102 root - INFO - Analyzing drift for column: web_traffic
+[ 2026-04-23 07:26:51,731 ] 102 root - INFO - Analyzing drift for column: Page_Rank
+[ 2026-04-23 07:26:51,747 ] 102 root - INFO - Analyzing drift for column: Google_Index
+[ 2026-04-23 07:26:51,747 ] 102 root - INFO - Analyzing drift for column: Links_pointing_to_page
+[ 2026-04-23 07:26:51,747 ] 102 root - INFO - Analyzing drift for column: Statistical_report
+[ 2026-04-23 07:26:51,747 ] 102 root - INFO - Analyzing drift for column: Result
+[ 2026-04-23 07:26:51,763 ] 135 root - INFO - Drift report saved at: Artifacts\data_validation\drift_report\report.yaml
+[ 2026-04-23 07:26:51,763 ] 136 root - INFO - Overall drift status: True
+[ 2026-04-23 07:26:51,871 ] 198 root - INFO - Validated train and test datasets saved successfully.
+[ 2026-04-23 07:26:51,871 ] 211 root - INFO - Data validation artifact created successfully.
+[ 2026-04-23 07:26:51,871 ] 212 root - INFO - Data validation process completed.
+[ 2026-04-23 07:26:51,871 ] 65 root - INFO - Data Validation Artifact: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+[ 2026-04-23 07:26:51,873 ] 70 root - INFO - Data Validation Stage Completed.
+[ 2026-04-23 07:26:51,873 ] 71 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 07:26:51,873 ] 76 root - INFO - Starting Data Transformation Stage.
+[ 2026-04-23 07:26:51,873 ] 51 root - INFO - Entered initiate_transformation() method of DataTransformation Class
+[ 2026-04-23 07:26:51,873 ] 53 root - INFO - Stating Data Transformation
+[ 2026-04-23 07:26:52,000 ] 39 root - INFO - Entered get_data_transformer_object method of Transformation class
+[ 2026-04-23 07:26:52,000 ] 42 root - INFO - Initialise KNNimputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[ 2026-04-23 07:26:52,021 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2026-04-23 07:26:52,023 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2026-04-23 07:26:52,024 ] 87 root - INFO - Data Transformation Artifact: DataTransformationArtifact(transformed_object_file_path='Artifacts\\data_transformation\\transformed_object\\preprocessing.pkl', transformed_train_file_path='Artifacts\\data_transformation\\transformed\\train.npy', transformed_test_file_path='Artifacts\\data_transformation\\transformed\\test.npy')
+[ 2026-04-23 07:26:52,025 ] 92 root - INFO - Data Transformation Stage Completed.
+[ 2026-04-23 07:26:52,025 ] 93 root - INFO - --------------------------------------------------------------------------------
+[ 2026-04-23 07:26:52,025 ] 114 root - INFO - ================================================================================
+[ 2026-04-23 07:26:52,025 ] 115 root - INFO - \u2705 TRAINING PIPELINE COMPLETED SUCCESSFULLY
+[ 2026-04-23 07:26:52,025 ] 116 root - INFO - ================================================================================

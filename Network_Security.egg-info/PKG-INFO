@@ -5,6 +5,7 @@ Author: Navneet Singh
 Author-email: singhnavneet2590@gmail.com
 License-File: LICENSE
 Requires-Dist: python-dotenv
+Requires-Dist: numpy
 Requires-Dist: pandas
 Requires-Dist: numpy
 Requires-Dist: pymongo[srv]==3.12
