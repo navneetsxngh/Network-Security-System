@@ -9,4 +9,6 @@ scikit-learn
 PyYAML
 mlflow
 dagshub
+fastapi
+uvicorn
 -e .
