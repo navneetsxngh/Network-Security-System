@@ -7,4 +7,5 @@ pymongo
 certifi
 scikit-learn
 PyYAML
+mlflow
 -e .

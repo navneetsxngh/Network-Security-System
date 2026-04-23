@@ -13,6 +13,7 @@ Requires-Dist: pymongo
 Requires-Dist: certifi
 Requires-Dist: scikit-learn
 Requires-Dist: PyYAML
+Requires-Dist: mlflow
 Dynamic: author
 Dynamic: author-email
 Dynamic: license-file

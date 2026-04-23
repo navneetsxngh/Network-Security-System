@@ -1,7 +1,7 @@
 from networksecurity.components.data_ingestion import DataIngestion
 from networksecurity.components.data_validation import DataValidation
 from networksecurity.components.data_transformation import DataTransformation
-# from networksecurity.components.model_trainer import ModelTrainer
+from networksecurity.components.model_trainer import ModelTrainer
 
 from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
@@ -12,8 +12,8 @@ from networksecurity.entity.config_entity import (
     TrainingPipelineConfig,
 )
 from networksecurity.entity.config_entity import (
-    DataTransformationConfig
-    # ModelTrainerConfig
+    DataTransformationConfig,
+    ModelTrainerConfig
 )
 
 import sys
@@ -95,21 +95,21 @@ def run_training_pipeline():
         # ==============================
         # MODEL TRAINING STAGE
         # ==============================
-        # logging.info("Starting Model Training Stage.")
-        # model_trainer_config = ModelTrainerConfig(
-        #     training_pipeline_config
-        # )
-        # model_trainer = ModelTrainer(
-        #     model_trainer_config=model_trainer_config,
-        #     data_transformation_artifact=data_transformation_artifact
-        # )
-        # model_trainer_artifact = (
-        #     model_trainer.initiate_model_trainer()
-        # )
-        # logging.info(
-        #     f"Model Trainer Artifact: {model_trainer_artifact}"
-        # )
-        # logging.info("Model Training Stage Completed.")
+        logging.info("Starting Model Training Stage.")
+        model_trainer_config = ModelTrainerConfig(
+            training_pipeline_config
+        )
+        model_trainer = ModelTrainer(
+            model_trainer_config=model_trainer_config,
+            data_transformation_artifact=data_transformation_artifact
+        )
+        model_trainer_artifact = (
+            model_trainer.initiate_model_trainer()
+        )
+        logging.info(
+            f"Model Trainer Artifact: {model_trainer_artifact}"
+        )
+        logging.info("Model Training Stage Completed.")
 
         logging.info("=" * 80)
         logging.info("✅ TRAINING PIPELINE COMPLETED SUCCESSFULLY")
