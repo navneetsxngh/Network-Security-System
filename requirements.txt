@@ -1,12 +1,11 @@
-python-dotenv
-numpy
-pandas
-pymongo
-certifi
-scikit-learn
-PyYAML
-mlflow
-dagshub
-fastapi
-uvicorn
--e .
+python-dotenv==1.0.1
+numpy==1.26.4
+pandas==2.2.2
+pymongo[srv]==3.12.3
+certifi==2024.2.2
+scikit-learn==1.4.2
+PyYAML==6.0.1
+mlflow==2.9.2
+dagshub==0.3.8
+fastapi==0.110.0
+uvicorn[standard]==0.29.0
