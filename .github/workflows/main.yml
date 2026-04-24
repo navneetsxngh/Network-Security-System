@@ -32,13 +32,18 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build Docker Image
-        run: docker build -t ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest .
-
-      - name: Push Docker Image to ECR
+      - name: Build, Tag & Push Docker Image to ECR
+        env:
+          ECR_REGISTRY: ${{ secrets.AWS_ECR_LOGIN_URI }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+          IMAGE_TAG: latest
         run: |
-          docker push ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
-          echo "Image pushed successfully"
+          IMAGE_URI="${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+          echo "Building image: ${IMAGE_URI}"
+          docker build -t "${IMAGE_URI}" .
+          echo "Pushing image to ECR..."
+          docker push "${IMAGE_URI}"
+          echo "Done: ${IMAGE_URI}"
 
   # ============================================================
   # JOB 2: CONTINUOUS DELIVERY
@@ -62,7 +67,12 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Pull Latest Docker Image from ECR
-        run: docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+        env:
+          ECR_REGISTRY: ${{ secrets.AWS_ECR_LOGIN_URI }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+        run: |
+          IMAGE_URI="${ECR_REGISTRY}/${ECR_REPOSITORY}:latest"
+          docker pull "${IMAGE_URI}"
 
       - name: Stop & Remove Existing Container (if running)
         run: |
@@ -71,20 +81,31 @@ jobs:
             || echo "No existing container found. Skipping..."
 
       - name: Run FastAPI Container on EC2
+        env:
+          ECR_REGISTRY: ${{ secrets.AWS_ECR_LOGIN_URI }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+          MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
+          MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: |
+          IMAGE_URI="${ECR_REGISTRY}/${ECR_REPOSITORY}:latest"
           docker run -d \
             --name networksecurity \
             --restart unless-stopped \
             -p 8080:8080 \
-            -e MONGO_DB_URL="${{ secrets.MONGO_DB_URL }}" \
-            -e AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" \
-            -e AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-            -e AWS_DEFAULT_REGION="${{ secrets.AWS_DEFAULT_REGION }}" \
-            -e MLFLOW_TRACKING_URI="${{ secrets.MLFLOW_TRACKING_URI }}" \
-            -e MLFLOW_TRACKING_USERNAME="${{ secrets.MLFLOW_TRACKING_USERNAME }}" \
-            -e MLFLOW_TRACKING_PASSWORD="${{ secrets.MLFLOW_TRACKING_PASSWORD }}" \
-            ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
-          echo "Container started. FastAPI accessible at http://<EC2-PUBLIC-IP>:8080"
+            -e MONGO_DB_URL="${MONGO_DB_URL}" \
+            -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
+            -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
+            -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" \
+            -e MLFLOW_TRACKING_URI="${MLFLOW_TRACKING_URI}" \
+            -e MLFLOW_TRACKING_USERNAME="${MLFLOW_TRACKING_USERNAME}" \
+            -e MLFLOW_TRACKING_PASSWORD="${MLFLOW_TRACKING_PASSWORD}" \
+            "${IMAGE_URI}"
+          echo "Container started. FastAPI at http://<EC2-PUBLIC-IP>:8080"
 
       - name: Clean Up Unused Docker Images
         run: docker image prune -f
