@@ -20,6 +20,18 @@ from networksecurity.pipeline.training_pipeline import TrainingPipeline
 from networksecurity.utils.main_utils.utils import load_object
 from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 
+import dagshub
+import mlflow
+from dotenv import load_dotenv
+
+load_dotenv()
+
+dagshub.init(
+    repo_owner="navneetsxngh",
+    repo_name="Network-Security-System",
+    mlflow=True
+)
+
 # =========================
 # MongoDB Setup (optional)
 # =========================
