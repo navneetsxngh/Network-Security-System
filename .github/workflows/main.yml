@@ -91,7 +91,7 @@ jobs:
 
       - name: Pull latest image
         run: |
-          docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+          docker pull ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
       - name: Stop and remove existing container (if running)
         run: |
@@ -99,7 +99,7 @@ jobs:
             && docker stop networksecurity && docker rm -fv networksecurity \
             || echo "No running container found, skipping..."
 
-      - name: Run Docker container to serve users
+      - name: Run Docker container
         run: |
           docker run -d \
             -p 8080:8080 \
@@ -112,8 +112,7 @@ jobs:
             -e MLFLOW_TRACKING_URI='${{ secrets.MLFLOW_TRACKING_URI }}' \
             -e MLFLOW_TRACKING_USERNAME='${{ secrets.MLFLOW_TRACKING_USERNAME }}' \
             -e MLFLOW_TRACKING_PASSWORD='${{ secrets.MLFLOW_TRACKING_PASSWORD }}' \
-            ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+            ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
-      - name: Clean previous images and containers
-        run: |
-          docker system prune -f
+      - name: Cleanup
+        run: docker system prune -f
