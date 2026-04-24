@@ -1,4 +1,4 @@
-name: Network Security System – CI/CD
+name: workflow
 
 on:
   push:
@@ -11,163 +11,87 @@ permissions:
   id-token: write
   contents: read
 
-env:
-  IMAGE_TAG: latest
-
-# =============================================================
-# JOB 1 — Continuous Integration (Lint & Unit Tests)
-# =============================================================
 jobs:
   integration:
-    name: Lint & Unit Tests
+    name: Continuous Integration
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
       - name: Lint code
-        run: echo "Linting repository"   # replace with: pip install flake8 && flake8 .
+        run: echo "Linting repository"
 
       - name: Run unit tests
-        run: echo "Running unit tests"   # replace with: pytest tests/
+        run: echo "Running unit tests"
 
-# =============================================================
-# JOB 2 — Build Docker Image & Push to Amazon ECR
-# =============================================================
   build-and-push-ecr-image:
-    name: Build & Push to ECR
+    name: Continuous Delivery
     needs: integration
     runs-on: ubuntu-latest
-
-    outputs:
-      # Pass the ECR registry URL to the deploy job — avoids needing a separate secret
-      registry: ${{ steps.login-ecr.outputs.registry }}
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
+      - name: Install Utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq unzip
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region:            ${{ secrets.AWS_DEFAULT_REGION }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Debug — print resolved variables
-        run: |
-          echo "ECR Registry : ${{ steps.login-ecr.outputs.registry }}"
-          echo "Repository   : ${{ secrets.ECR_REPOSITORY_NAME }}"
-          echo "Image tag    : ${{ env.IMAGE_TAG }}"
-
-      - name: Build, tag, and push Docker image to ECR
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
         env:
-          ECR_REGISTRY:   ${{ steps.login-ecr.outputs.registry }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+          IMAGE_TAG: latest
         run: |
-          docker build \
-            -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" \
-            .
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-          docker push "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-          echo "Image pushed: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-# =============================================================
-# JOB 3 — Deploy to EC2 (self-hosted runner)
-# =============================================================
-  deploy:
-    name: Deploy to EC2
+  Continuous-Deployment:
     needs: build-and-push-ecr-image
-    runs-on: self-hosted   # your EC2 runner must be online
-
+    runs-on: self-hosted
     steps:
-      # ----------------------------------------------------------
-      # Step 1: Authenticate Docker with ECR on the EC2 runner
-      # ----------------------------------------------------------
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region:            ${{ secrets.AWS_DEFAULT_REGION }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      
+      
+      - name: Pull latest images
         run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_DEFAULT_REGION }} \
-          | docker login \
-              --username AWS \
-              --password-stdin \
-              ${{ needs.build-and-push-ecr-image.outputs.registry }}
-
-      # ----------------------------------------------------------
-      # Step 2: Pull the latest image
-      # ----------------------------------------------------------
-      - name: Pull latest image from ECR
-        env:
-          ECR_REGISTRY:   ${{ needs.build-and-push-ecr-image.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+         docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+         
+      #- name: Stop and remove  container if running
+       # run: |
+        # docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm -fv networksecurity
+       
+      - name: Run Docker Image to serve users
         run: |
-          docker pull "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-      # ----------------------------------------------------------
-      # Step 3: Stop & remove the old container (if running)
-      # ----------------------------------------------------------
-      - name: Stop and remove old container
+         docker run -d -p 8080:8080 --ipc="host" --name=networksecurity -e 'AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION=${{ secrets.AWS_DEFAULT_REGION }}'  ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+      - name: Clean previous images and containers
         run: |
-          docker stop networksecurity 2>/dev/null || true
-          docker rm   networksecurity 2>/dev/null || true
-
-      # ----------------------------------------------------------
-      # Step 4: Run the new container with all required env vars
-      # ----------------------------------------------------------
-      - name: Run new container
-        env:
-          ECR_REGISTRY:   ${{ needs.build-and-push-ecr-image.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
-        run: |
-          docker run -d \
-            --name networksecurity \
-            --restart unless-stopped \
-            -p 8000:8000 \
-            \
-            -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-            -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-            -e AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }} \
-            \
-            -e MONGO_DB_URL=${{ secrets.MONGO_DB_URL }} \
-            \
-            -e MLFLOW_TRACKING_URI=${{ secrets.MLFLOW_TRACKING_URI }} \
-            -e MLFLOW_TRACKING_USERNAME=${{ secrets.MLFLOW_TRACKING_USERNAME }} \
-            -e MLFLOW_TRACKING_PASSWORD=${{ secrets.MLFLOW_TRACKING_PASSWORD }} \
-            \
-            "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-      # ----------------------------------------------------------
-      # Step 5: Verify the container is actually running
-      # ----------------------------------------------------------
-      - name: Health check
-        run: |
-          sleep 5
-          docker ps --filter "name=networksecurity" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-
-      # ----------------------------------------------------------
-      # Step 6: Free up disk space on the EC2 runner
-      # ----------------------------------------------------------
-      - name: Cleanup unused Docker objects
-        run: docker system prune -f
+         docker system prune -f
