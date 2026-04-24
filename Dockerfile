@@ -23,9 +23,8 @@ RUN apt-get update && apt-get install -y \
 # Copy only requirements first (for caching)
 COPY requirements.txt .
 
-# Upgrade pip and install dependencies
-RUN pip install --upgrade pip && \
-    pip install --prefer-binary -r requirements.txt
+# install dependencies
+RUN pip install -r requirements.txt
 
 # Copy the rest of your app
 COPY . .
