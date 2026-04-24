@@ -2,7 +2,7 @@
 # Dockerfile — Network Security System (FastAPI + Uvicorn)
 # ==============================================================
 
-FROM python:3.10-slim-buster
+FROM  python:3.11-slim-bookworm
 
 # Set working directory inside the container
 WORKDIR /app
