@@ -9,6 +9,7 @@ load_dotenv()
 import pandas as pd
 import pymongo
 
+from uvicorn import run
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, HTMLResponse
 from starlette.responses import RedirectResponse
@@ -162,5 +163,4 @@ async def predict_route(request: Request, file: UploadFile = File(...)):
 # Run Server
 # =========================
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app=app, host="localhost", port=8000)
+    run(app=app, host="localhost", port=8000)
