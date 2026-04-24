@@ -36,14 +36,17 @@ jobs:
         env:
           ECR_REGISTRY: ${{ secrets.AWS_ECR_LOGIN_URI }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
-          IMAGE_TAG: latest
         run: |
-          IMAGE_URI="${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
-          echo "Building image: ${IMAGE_URI}"
+          # Strip any accidental whitespace/newlines from secret values
+          REGISTRY=$(echo "${ECR_REGISTRY}" | tr -d '[:space:]')
+          REPOSITORY=$(echo "${ECR_REPOSITORY}" | tr -d '[:space:]')
+          IMAGE_URI="${REGISTRY}/${REPOSITORY}:latest"
+
+          echo "Building image..."
           docker build -t "${IMAGE_URI}" .
+
           echo "Pushing image to ECR..."
           docker push "${IMAGE_URI}"
-          echo "Done: ${IMAGE_URI}"
 
   # ============================================================
   # JOB 2: CONTINUOUS DELIVERY
@@ -71,7 +74,9 @@ jobs:
           ECR_REGISTRY: ${{ secrets.AWS_ECR_LOGIN_URI }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
         run: |
-          IMAGE_URI="${ECR_REGISTRY}/${ECR_REPOSITORY}:latest"
+          REGISTRY=$(echo "${ECR_REGISTRY}" | tr -d '[:space:]')
+          REPOSITORY=$(echo "${ECR_REPOSITORY}" | tr -d '[:space:]')
+          IMAGE_URI="${REGISTRY}/${REPOSITORY}:latest"
           docker pull "${IMAGE_URI}"
 
       - name: Stop & Remove Existing Container (if running)
@@ -92,7 +97,10 @@ jobs:
           MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: |
-          IMAGE_URI="${ECR_REGISTRY}/${ECR_REPOSITORY}:latest"
+          REGISTRY=$(echo "${ECR_REGISTRY}" | tr -d '[:space:]')
+          REPOSITORY=$(echo "${ECR_REPOSITORY}" | tr -d '[:space:]')
+          IMAGE_URI="${REGISTRY}/${REPOSITORY}:latest"
+
           docker run -d \
             --name networksecurity \
             --restart unless-stopped \
