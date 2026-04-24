@@ -175,4 +175,4 @@ async def predict_route(request: Request, file: UploadFile = File(...)):
 # Run Server
 # =========================
 if __name__ == "__main__":
-    run(app=app, host="localhost", port=8000)
+    run(app=app, host="0.0.0.0", port=8080)
